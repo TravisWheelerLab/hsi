@@ -7,11 +7,18 @@ subsequences.
 
 The package consists of three tools, described below.
 
-**sindex** - TODO
+**sindex**
 
-**sstat** - TODO
+Generates an .hsi index for a FASTA-formatted biological sequence file.
 
-**sfetch** - TODO
+**sstat**
+
+Outputs metadata about an indexed sequence file, including number
+of sequences, total residues, and per-sequence residue counts.
+
+**sfetch**
+
+Extracts a (sub)sequence from an indexed file.
 
 ## Build
 
