@@ -242,7 +242,9 @@ void ExtractSequenceRange (FILE_META * FM, char * SeqName, uint32_t start, uint3
   uint32_t seq_len = strtol(smallhex,NULL,16);
 
   // If the user wants the full sequence, we'll need to oblige them
+  uint8_t fetching_full_seq = 0;
   if (start == 0 && end == 0) {
+    fetching_full_seq = 1;
     start = 1;
     end = seq_len;
   }
@@ -308,8 +310,12 @@ void ExtractSequenceRange (FILE_META * FM, char * SeqName, uint32_t start, uint3
       offset--;
   }
 
-  if (revcomp) printf(">%s/%d-%d\n",SeqName,end+1,start+1);
-  else         printf(">%s/%d-%d\n",SeqName,start+1,end+1);
+  printf(">\%s",SeqName);
+  if (!fetching_full_seq) {
+    if (revcomp) printf("/%d-%d",end+1,start+1);
+    else         printf("/%d-%d",start+1,end+1);
+  }
+  printf("\n");
   
   // AWWWW YEAH! Now, we READ!
   int line_len = 0;
